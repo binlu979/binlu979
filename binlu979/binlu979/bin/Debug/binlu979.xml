@@ -1,0 +1,1842 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>binlu979</name>
+    </assembly>
+    <members>
+        <!-- 对于成员“P:binlu979.Download.DownMsg.Tag”忽略有格式错误的 XML 注释 -->
+        <member name="M:binlu979.Download.DownloadThread.isFinish">
+            <summary>
+            下载是否完成
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:binlu979.Download.DownloadThread.getDownLength">
+            <summary> 
+             已经下载的内容大小  
+            </summary>
+            <returns>如果返回值为-1,代表下载失败</returns>
+        </member>
+        <member name="F:binlu979.Download.FileDownloader.downloadSize">
+            <summary>
+            已下载文件长度
+            </summary>
+        </member>
+        <member name="F:binlu979.Download.FileDownloader.fileSize">
+            <summary>
+            原始文件长度
+            </summary>
+        </member>
+        <member name="F:binlu979.Download.FileDownloader.threads">
+            <summary>
+            线程数
+            </summary>
+        </member>
+        <member name="F:binlu979.Download.FileDownloader.saveFile">
+            <summary>
+            本地保存文件
+            </summary>
+        </member>
+        <member name="F:binlu979.Download.FileDownloader.data">
+            <summary>
+            缓存各线程下载的长度
+            </summary>
+        </member>
+        <member name="F:binlu979.Download.FileDownloader.block">
+            <summary>
+            每条线程下载的长度
+            </summary>
+        </member>
+        <member name="F:binlu979.Download.FileDownloader.downloadUrl">
+            <summary>
+            下载路径
+            </summary>
+        </member>
+        <member name="M:binlu979.Download.FileDownloader.getThreadSize">
+            <summary>
+             获取线程数
+            </summary>
+            <returns> 获取线程数</returns>
+        </member>
+        <member name="M:binlu979.Download.FileDownloader.getFileSize">
+            <summary>
+              获取文件大小
+            </summary>
+            <returns>获取文件大小</returns>
+        </member>
+        <member name="M:binlu979.Download.FileDownloader.append(System.Int64)">
+            <summary>
+            累计已下载大小
+            </summary>
+            <param name="size">累计已下载大小</param>
+        </member>
+        <member name="M:binlu979.Download.FileDownloader.update(System.Int32,System.Int64)">
+            <summary>
+            更新指定线程最后下载的位置
+            </summary>
+            <param name="threadId">threadId 线程id</param>
+            <param name="pos">最后下载的位置</param>
+        </member>
+        <member name="M:binlu979.Download.FileDownloader.#ctor(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            构建下载准备,获取文件大小
+            </summary>
+            <param name="downloadUrl">下载路径</param>
+            <param name="fileSaveDir"> 文件保存目录</param>
+            <param name="threadNum">下载线程数</param>
+        </member>
+        <member name="M:binlu979.Download.FileDownloader.download(binlu979.Download.IDownloadProgressListener)">
+            <summary>
+            开始下载文件
+            </summary>
+            <param name="listener">监听下载数量的变化,如果不需要了解实时下载的数量,可以设置为null</param>
+            <returns>已下载文件大小</returns>
+        </member>
+        <member name="M:binlu979.Tools.DtatTOdata.RepairZero(System.String,System.Int32)">
+            <summary>  
+            指定字符串的固定长度，如果字符串小于固定长度，  
+            则在字符串的前面补足零，可设置的固定长度最大为9位  
+            </summary>  
+            <param name="text">原始字符串</param>  
+            <param name="limitedLength">字符串的固定长度</param>  
+        </member>
+        <member name="M:binlu979.Tools.DtatTOdata.ConvertBase(System.String,System.Int32,System.Int32)">
+            <summary>  
+            实现各进制数间的转换。ConvertBase("15",10,16)表示将十进制数15转换为16进制的数。  
+            </summary>  
+            <param name="value">要转换的值,即原值</param>  
+            <param name="from">原值的进制,只能是2,8,10,16四个值。</param>  
+            <param name="to">要转换到的目标进制，只能是2,8,10,16四个值。</param>  
+        </member>
+        <member name="M:binlu979.Tools.DtatTOdata.StringToBytes(System.String,System.Text.Encoding)">
+            <summary>  
+            使用指定字符集将string转换成byte[]  
+            </summary>  
+            <param name="text">要转换的字符串</param>  
+            <param name="encoding">字符编码</param>  
+        </member>
+        <member name="M:binlu979.Tools.DtatTOdata.BytesToString(System.Byte[],System.Text.Encoding)">
+            <summary>  
+            使用指定字符集将byte[]转换成string  
+            </summary>  
+            <param name="bytes">要转换的字节数组</param>  
+            <param name="encoding">字符编码</param>  
+        </member>
+        <member name="M:binlu979.Tools.DtatTOdata.BytesToInt32(System.Byte[])">
+            <summary>  
+            将byte[]转换成int  
+            </summary>  
+            <param name="data">需要转换成整数的byte数组</param>  
+        </member>
+        <member name="M:binlu979.Tools.inio.GetPrivateProfileSectionNames(System.IntPtr,System.UInt32,System.String)">
+            <summary>
+            获取所有节点名称(Section)
+            </summary>
+            <param name="lpszReturnBuffer">存放节点名称的内存地址,每个节点之间用\0分隔</param>
+            <param name="nSize">内存大小(characters)</param>
+            <param name="lpFileName">Ini文件</param>
+            <returns>内容的实际长度,为0表示没有内容,为nSize-2表示内存大小不够</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.GetPrivateProfileSection(System.String,System.IntPtr,System.UInt32,System.String)">
+            <summary>
+            获取某个指定节点(Section)中所有KEY和Value
+            </summary>
+            <param name="lpAppName">节点名称</param>
+            <param name="lpReturnedString">返回值的内存地址,每个之间用\0分隔</param>
+            <param name="nSize">内存大小(characters)</param>
+            <param name="lpFileName">Ini文件</param>
+            <returns>内容的实际长度,为0表示没有内容,为nSize-2表示内存大小不够</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.GetPrivateProfileString(System.String,System.String,System.String,System.Char[],System.UInt32,System.String)">
+            <summary>
+            读取INI文件中指定的Key的值
+            </summary>
+            <param name="lpAppName">节点名称。如果为null,则读取INI中所有节点名称,每个节点名称之间用\0分隔</param>
+            <param name="lpKeyName">Key名称。如果为null,则读取INI中指定节点中的所有KEY,每个KEY之间用\0分隔</param>
+            <param name="lpDefault">读取失败时的默认值</param>
+            <param name="lpReturnedString">读取的内容缓冲区，读取之后，多余的地方使用\0填充</param>
+            <param name="nSize">内容缓冲区的长度</param>
+            <param name="lpFileName">INI文件名</param>
+            <returns>实际读取到的长度</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.WritePrivateProfileSection(System.String,System.String,System.String)">
+            <summary>
+            将指定的键值对写到指定的节点，如果已经存在则替换。
+            </summary>
+            <param name="lpAppName">节点，如果不存在此节点，则创建此节点</param>
+            <param name="lpString">Item键值对，多个用\0分隔,形如key1=value1\0key2=value2
+            <para>如果为string.Empty，则删除指定节点下的所有内容，保留节点</para>
+            <para>如果为null，则删除指定节点下的所有内容，并且删除该节点</para>
+            </param>
+            <param name="lpFileName">INI文件</param>
+            <returns>是否成功写入</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.WritePrivateProfileString(System.String,System.String,System.String,System.String)">
+            <summary>
+            将指定的键和值写到指定的节点，如果已经存在则替换
+            </summary>
+            <param name="lpAppName">节点名称</param>
+            <param name="lpKeyName">键名称。如果为null，则删除指定的节点及其所有的项目</param>
+            <param name="lpString">值内容。如果为null，则删除指定节点中指定的键。</param>
+            <param name="lpFileName">INI文件</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.INIGetAllSectionNames(System.String)">
+            <summary>
+            读取INI文件中指定INI文件中的所有节点名称(Section)
+            </summary>
+            <param name="iniFile">Ini文件</param>
+            <returns>所有节点,没有内容返回string[0]</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.INIGetAllItems(System.String,System.String)">
+            <summary>
+            获取INI文件中指定节点(Section)中的所有条目(key=value形式)
+            </summary>
+            <param name="iniFile">Ini文件</param>
+            <param name="section">节点名称</param>
+            <returns>指定节点中的所有项目,没有内容返回string[0]</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.INIGetAllItemKeys(System.String,System.String)">
+            <summary>
+            获取INI文件中指定节点(Section)中的所有条目的Key列表
+            </summary>
+            <param name="iniFile">Ini文件</param>
+            <param name="section">节点名称</param>
+            <returns>如果没有内容,反回string[0]</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.INIGetStringValue(System.String,System.String,System.String,System.String)">
+            <summary>
+            读取INI文件中指定KEY的字符串型值
+            </summary>
+            <param name="iniFile">Ini文件</param>
+            <param name="section">节点名称</param>
+            <param name="key">键名称</param>
+            <param name="defaultValue">如果没此KEY所使用的默认值</param>
+            <returns>读取到的值</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.INIWriteItems(System.String,System.String,System.String)">
+            <summary>
+            在INI文件中，将指定的键值对写到指定的节点，如果已经存在则替换
+            </summary>
+            <param name="iniFile">INI文件</param>
+            <param name="section">节点，如果不存在此节点，则创建此节点</param>
+            <param name="items">键值对，多个用\0分隔,形如key1=value1\0key2=value2</param>
+            <returns></returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.INIWriteValue(System.String,System.String,System.String,System.String)">
+            <summary>
+            在INI文件中，指定节点写入指定的键及值。如果已经存在，则替换。如果没有则创建。
+            </summary>
+            <param name="iniFile">INI文件</param>
+            <param name="section">节点</param>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.INIDeleteKey(System.String,System.String,System.String)">
+            <summary>
+            在INI文件中，删除指定节点中的指定的键。
+            </summary>
+            <param name="iniFile">INI文件</param>
+            <param name="section">节点</param>
+            <param name="key">键</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.INIDeleteSection(System.String,System.String)">
+            <summary>
+            在INI文件中，删除指定的节点。
+            </summary>
+            <param name="iniFile">INI文件</param>
+            <param name="section">节点</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="M:binlu979.Tools.inio.INIEmptySection(System.String,System.String)">
+            <summary>
+            在INI文件中，删除指定节点中的所有内容。
+            </summary>
+            <param name="iniFile">INI文件</param>
+            <param name="section">节点</param>
+            <returns>操作是否成功</returns>
+        </member>
+        <member name="T:binlu979.Tools.Tools">
+            <summary>
+            常用工具类
+            </summary>
+        </member>
+        <member name="M:binlu979.Tools.Tools.StringCal(System.String,System.Int32)">
+            <summary>
+            截取字符串。
+            </summary>
+            <param name="str">要接取得字符串</param>
+            <param name="number">保留的字节数。按半角计算</param>
+            <returns>指定长度的字符串</returns>
+        </member>
+        <member name="M:binlu979.Tools.Tools.DeleteFile(System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="FilePath">文件的物理地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:binlu979.Tools.Tools.IsNumeric(System.String)">
+            <summary>
+            判断是否为数字
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:binlu979.Tools.Tools.jiapass(System.String,System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="encryptString">要加密字符串</param>
+            <param name="encryptKey">加密秘钥不设置将使用默认值</param>
+            <returns></returns>
+        </member>
+        <member name="M:binlu979.Tools.Tools.jiepass(System.String,System.String)">
+              
+            DES解密字符串          
+            待解密的字符串  
+            解密密钥,要求为8位,和加密密钥相同  
+            解密成功返回解密后的字符串，失败返源串  
+        </member>
+        <member name="M:binlu979.Tools.Tools.isNumbrFlaog(System.Object,System.Windows.Forms.KeyPressEventArgs,binlu979.Tools.Tools.numType)">
+            <summary>
+            判断当前输入的是否是数字 e.Handled = true;即可
+            </summary>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="T:binlu979.Tools.序列化">
+            <summary>
+            序列化和反序列化类前必须添加 [Serializable]
+            </summary>
+        </member>
+        <member name="M:binlu979.Tools.序列化.onstart(System.Object,System.String,System.String)">
+            <summary>
+            开始序列化
+            </summary>
+            <param name="cl">类</param>
+            <param name="path">路径</param>
+            <param name="name">名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:binlu979.Tools.序列化.Deserialize(System.String,System.String)">
+            <summary>
+            反序列化
+            </summary>
+            <param name="path">路径</param>
+            <param name="name">名称</param>
+            <returns></returns>
+        </member>
+        <member name="F:binlu979.Form1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:binlu979.Form1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:binlu979.Form1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:binlu979.HttpHelper.HttpHelper">
+            <summary>
+            Http连接操作帮助类
+            </summary>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.GetHtml(binlu979.HttpHelper.HttpItem)">
+            <summary>
+            根据相传入的数据，得到相应页面数据
+            </summary>
+            <param name="item">参数类对象</param>
+            <returns>返回HttpResult类型</returns>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.GetData(binlu979.HttpHelper.HttpItem,binlu979.HttpHelper.HttpResult)">
+            <summary>
+            获取数据的并解析的方法
+            </summary>
+            <param name="item"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.SetEncoding(binlu979.HttpHelper.HttpItem,binlu979.HttpHelper.HttpResult,System.Byte[])">
+            <summary>
+            设置编码
+            </summary>
+            <param name="item">HttpItem</param>
+            <param name="result">HttpResult</param>
+            <param name="ResponseByte">byte[]</param>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.GetByte">
+            <summary>
+            提取网页Byte
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.SetRequest(binlu979.HttpHelper.HttpItem)">
+             <summary>
+             为请求准备参数
+             </summary>
+            <param name="item">参数列表</param>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.SetCer(binlu979.HttpHelper.HttpItem)">
+            <summary>
+            设置证书
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.SetCerList(binlu979.HttpHelper.HttpItem)">
+            <summary>
+            设置多个证书
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.SetCookie(binlu979.HttpHelper.HttpItem)">
+            <summary>
+            设置Cookie
+            </summary>
+            <param name="item">Http参数</param>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.SetPostData(binlu979.HttpHelper.HttpItem)">
+            <summary>
+            设置Post数据
+            </summary>
+            <param name="item">Http参数</param>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.SetProxy(binlu979.HttpHelper.HttpItem)">
+            <summary>
+            设置代理
+            </summary>
+            <param name="item">参数对象</param>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.CheckValidationResult(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            回调验证证书问题
+            </summary>
+            <param name="sender">流对象</param>
+            <param name="certificate">证书</param>
+            <param name="chain">X509Chain</param>
+            <param name="errors">SslPolicyErrors</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:binlu979.HttpHelper.HttpHelper.BindIPEndPointCallback(System.Net.ServicePoint,System.Net.IPEndPoint,System.Int32)">
+            <summary>
+            通过设置这个属性，可以在发出连接的时候绑定客户端发出连接所使用的IP地址。 
+            </summary>
+            <param name="servicePoint"></param>
+            <param name="remoteEndPoint"></param>
+            <param name="retryCount"></param>
+            <returns></returns>
+        </member>
+        <member name="T:binlu979.HttpHelper.HttpItem">
+            <summary>
+            Http请求参考类
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.URL">
+            <summary>
+            请求URL必须填写
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.Method">
+            <summary>
+            请求方式默认为GET方式,当为POST方式时必须设置Postdata的值
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.Timeout">
+            <summary>
+            默认请求超时时间
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.ReadWriteTimeout">
+            <summary>
+            默认写入Post数据超时间
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.Host">
+            <summary>
+            设置Host的标头信息
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.KeepAlive">
+            <summary>
+             获取或设置一个值，该值指示是否与 Internet 资源建立持久性连接默认为true。
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.Accept">
+            <summary>
+            请求标头值 默认为text/html, application/xhtml+xml, */*
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.ContentType">
+            <summary>
+            请求返回类型默认 text/html
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.UserAgent">
+            <summary>
+            客户端访问信息默认Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.Encoding">
+            <summary>
+            返回数据编码默认为NUll,可以自动识别,一般为utf-8,gbk,gb2312
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.PostDataType">
+            <summary>
+            Post的数据类型
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.Postdata">
+            <summary>
+            Post请求时要发送的字符串Post数据
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.PostdataByte">
+            <summary>
+            Post请求时要发送的Byte类型的Post数据
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.CookieCollection">
+            <summary>
+            Cookie对象集合
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.Cookie">
+            <summary>
+            请求时的Cookie
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.Referer">
+            <summary>
+            来源地址，上次访问地址
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.CerPath">
+            <summary>
+            证书绝对路径
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.WebProxy">
+            <summary>
+            设置代理对象，不想使用IE默认配置就设置为Null，而且不要设置ProxyIp
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.IsToLower">
+            <summary>
+            是否设置为全文小写，默认为不转化
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.Allowautoredirect">
+            <summary>
+            支持跳转页面，查询结果将是跳转后的页面，默认是不跳转
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.Connectionlimit">
+            <summary>
+            最大连接数
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.ProxyUserName">
+            <summary>
+            代理Proxy 服务器用户名
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.ProxyPwd">
+            <summary>
+            代理 服务器密码
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.ProxyIp">
+            <summary>
+            代理 服务IP,如果要使用IE代理就设置为ieproxy
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.ResultType">
+            <summary>
+            设置返回类型String和Byte
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.Header">
+            <summary>
+            header对象
+            </summary>
+        </member>
+        <!-- 对于成员“P:binlu979.HttpHelper.HttpItem.ProtocolVersion”忽略有格式错误的 XML 注释 -->
+        <member name="P:binlu979.HttpHelper.HttpItem.Expect100Continue">
+            <summary>
+             获取或设置一个 System.Boolean 值，该值确定是否使用 100-Continue 行为。如果 POST 请求需要 100-Continue 响应，则为 true；否则为 false。默认值为 true。
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.ClentCertificates">
+            <summary>
+            设置509证书集合
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.PostEncoding">
+            <summary>
+            设置或获取Post参数编码,默认的为Default编码
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.ResultCookieType">
+            <summary>
+            Cookie返回类型,默认的是只返回字符串类型
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.ICredentials">
+            <summary>
+            获取或设置请求的身份验证信息。
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.MaximumAutomaticRedirections">
+            <summary>
+            设置请求将跟随的重定向的最大数目
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.IfModifiedSince">
+            <summary>
+            获取和设置IfModifiedSince，默认为当前日期和时间
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.IPEndPoint">
+             <summary>
+             设置本地的出口ip和端口
+             </summary>]
+             <example>
+            item.IPEndPoint = new IPEndPoint(IPAddress.Parse("192.168.1.1"),80);
+             </example>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpItem.IsReset">
+            <summary>
+            是否重置request,response的值，默认不重置，当设置为True时request,response将被设置为Null
+            </summary>
+        </member>
+        <member name="T:binlu979.HttpHelper.HttpResult">
+            <summary>
+            Http返回参数类
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpResult.Cookie">
+            <summary>
+            Http请求返回的Cookie
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpResult.CookieCollection">
+            <summary>
+            Cookie对象集合
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpResult.Html">
+            <summary>
+            返回的String类型数据 只有ResultType.String时才返回数据，其它情况为空
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpResult.ResultByte">
+            <summary>
+            返回的Byte数组 只有ResultType.Byte时才返回数据，其它情况为空
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpResult.Header">
+            <summary>
+            header对象
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpResult.StatusDescription">
+            <summary>
+            返回状态说明
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpResult.StatusCode">
+            <summary>
+            返回状态码,默认为OK
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpResult.ResponseUri">
+            <summary>
+            最后访问的URl
+            </summary>
+        </member>
+        <member name="P:binlu979.HttpHelper.HttpResult.RedirectUrl">
+            <summary>
+            获取重定向的URl
+            </summary>
+        </member>
+        <member name="T:binlu979.HttpHelper.ResultType">
+            <summary>
+            返回类型
+            </summary>
+        </member>
+        <member name="F:binlu979.HttpHelper.ResultType.String">
+            <summary>
+            表示只返回字符串 只有Html有数据
+            </summary>
+        </member>
+        <member name="F:binlu979.HttpHelper.ResultType.Byte">
+            <summary>
+            表示返回字符串和字节流 ResultByte和Html都有数据返回
+            </summary>
+        </member>
+        <member name="T:binlu979.HttpHelper.PostDataType">
+            <summary>
+            Post的数据格式默认为string
+            </summary>
+        </member>
+        <member name="F:binlu979.HttpHelper.PostDataType.String">
+            <summary>
+            字符串类型，这时编码Encoding可不设置
+            </summary>
+        </member>
+        <member name="F:binlu979.HttpHelper.PostDataType.Byte">
+            <summary>
+            Byte类型，需要设置PostdataByte参数的值编码Encoding可设置为空
+            </summary>
+        </member>
+        <member name="F:binlu979.HttpHelper.PostDataType.FilePath">
+            <summary>
+            传文件，Postdata必须设置为文件的绝对路径，必须设置Encoding的值
+            </summary>
+        </member>
+        <member name="T:binlu979.HttpHelper.ResultCookieType">
+            <summary>
+            Cookie返回类型
+            </summary>
+        </member>
+        <member name="F:binlu979.HttpHelper.ResultCookieType.String">
+            <summary>
+            只返回字符串类型的Cookie
+            </summary>
+        </member>
+        <member name="F:binlu979.HttpHelper.ResultCookieType.CookieCollection">
+            <summary>
+            CookieCollection格式的Cookie集合同时也返回String类型的cookie
+            </summary>
+        </member>
+        <member name="M:binlu979.HttpLib.Builder.RequestBuilder.OnSuccess(System.Action{System.Net.WebHeaderCollection,System.String})">
+            <summary>
+            获取返回的数据
+            获取方法（data=>{string da=data});
+            </summary>
+            <returns>返回数据一般为string</returns>
+        </member>
+        <member name="M:binlu979.HttpLib.Builder.RequestBuilder.Form(System.Object)">
+            <summary>
+            发送的Form报，设置方式.Form(new { username = user, password = pass })
+            </summary>
+            <param name="body"></param>
+            <returns></returns>
+        </member>
+        <member name="M:binlu979.HttpLib.Builder.RequestBuilder.Go">
+            <summary>
+            开始发起请求
+            </summary>
+        </member>
+        <member name="M:binlu979.HttpLib.Http.Get(System.String)">
+            <summary>
+            获取get请求
+            </summary>
+            <param name="url">地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:binlu979.HttpLib.Http.Post(System.String)">
+            <summary>
+            获取POST请求
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="T:binlu979.HttpLib.NamedFileStream">
+            <summary>
+            NamedFileStream is a simple data structre that holds a file name, and stream
+            </summary>
+        </member>
+        <member name="M:binlu979.HttpLib.NamedFileStream.#ctor(System.String,System.String,System.String,System.IO.Stream)">
+            <summary>
+            Create a new NamedFileStream
+            </summary>
+            <param name="name">Form name for file</param>
+            <param name="filename">Name of file</param>
+            <param name="contentType">Content type of file</param>
+            <param name="stream">File Stream</param>
+        </member>
+        <member name="T:binlu979.LogNet.ILogNet">
+            <summary>
+            一个通用的日志接口
+            </summary>
+            <remarks>
+            本组件的日志核心机制，如果您使用了本组件却不想使用本组件的日志组件功能，可以自己实现新的日志组件，只要继承本接口接口。其他常用的日志组件如下：（都是可以实现的）
+            <list type="number">
+            <item>Log4Net</item>
+            <item>NLog</item>
+            </list>
+            </remarks>
+            <example>
+            实现类就不放示例代码了，存储日志的使用都是一样的，就是实例化的时候不一致，以下示例代码以单文件日志为例
+            <code lang="cs" source="TestProject\HslCommunicationDemo\FormLogNet.cs" region="ILogNet" title="ILogNet示例" />
+            </example>
+        </member>
+        <member name="P:binlu979.LogNet.ILogNet.LogSaveMode">
+            <summary>
+            文件存储模式，1:单文件，2:根据大小，3:根据时间
+            </summary>
+        </member>
+        <member name="E:binlu979.LogNet.ILogNet.BeforeSaveToFile">
+            <summary>
+            存储之前引发的事件，允许额外的操作
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.RecordMessage(binlu979.LogNet.HslMessageDegree,System.String,System.String)">
+            <summary>
+            自定义的消息记录
+            </summary>
+            <param name="degree">消息等级</param>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteDebug(System.String)">
+            <summary>
+            写入一条调试日志
+            </summary>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteDebug(System.String,System.String)">
+            <summary>
+            写入一条调试日志
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteDescrition(System.String)">
+            <summary>
+            写入一条解释性的信息
+            </summary>
+            <param name="description"></param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteError(System.String)">
+            <summary>
+            写入一条错误日志
+            </summary>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteError(System.String,System.String)">
+            <summary>
+            写入一条错误日志
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteException(System.String,System.Exception)">
+            <summary>
+            写入一条异常信息
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="ex">异常</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteException(System.String,System.String,System.Exception)">
+            <summary>
+            写入一条异常信息
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">内容</param>
+            <param name="ex">异常</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteFatal(System.String)">
+            <summary>
+            写入一条致命日志
+            </summary>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteFatal(System.String,System.String)">
+            <summary>
+            写入一条致命日志
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteInfo(System.String)">
+            <summary>
+            写入一条信息日志
+            </summary>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteInfo(System.String,System.String)">
+            <summary>
+            写入一条信息日志
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteNewLine">
+            <summary>
+            写入一行换行符
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteWarn(System.String)">
+            <summary>
+            写入一条警告日志
+            </summary>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.WriteWarn(System.String,System.String)">
+            <summary>
+            写入一条警告日志
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.SetMessageDegree(binlu979.LogNet.HslMessageDegree)">
+            <summary>
+            设置日志的存储等级，高于该等级的才会被存储
+            </summary>
+            <param name="degree">登记信息</param>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.GetExistLogFileNames">
+            <summary>
+            获取已存在的日志文件名称
+            </summary>
+            <returns>文件列表</returns>
+        </member>
+        <member name="M:binlu979.LogNet.ILogNet.FiltrateKeyword(System.String)">
+            <summary>
+            过滤掉指定的关键字的日志，该信息不存储，但仍然触发BeforeSaveToFile事件
+            </summary>
+            <param name="keyword">关键字</param>
+        </member>
+        <member name="T:binlu979.LogNet.LogNetBase">
+            <summary>
+            日志存储类的基类，提供一些基础的服务
+            </summary>
+            <remarks>
+            基于此类可以实现任意的规则的日志存储规则，欢迎大家补充实现，本组件实现了3个日志类
+            <list type="number">
+            <item>单文件日志类 <see cref="T:binlu979.LogNet.LogNetSingle"/></item>
+            <item>根据文件大小的类 <see cref="T:binlu979.LogNet.LogNetFileSize"/></item>
+            <item>根据时间进行存储的类 <see cref="T:binlu979.LogNet.LogNetDateTime"/></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.#ctor">
+            <summary>
+            实例化一个日志对象
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.LogNetBase.m_fileSaveLock">
+            <summary>
+            文件存储的锁
+            </summary>
+        </member>
+        <member name="E:binlu979.LogNet.LogNetBase.BeforeSaveToFile">
+            <summary>
+            在存储到文件的时候将会触发的事件
+            </summary>
+        </member>
+        <member name="P:binlu979.LogNet.LogNetBase.LogSaveMode">
+            <summary>
+            日志存储模式，1:单文件，2:按大小存储，3:按时间存储
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteDebug(System.String)">
+            <summary>
+            写入一条调试信息
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteDebug(System.String,System.String)">
+            <summary>
+            写入一条调试信息
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">文本内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteInfo(System.String)">
+            <summary>
+            写入一条普通信息
+            </summary>
+            <param name="text">文本内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteInfo(System.String,System.String)">
+            <summary>
+            写入一条普通信息
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">文本内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteWarn(System.String)">
+            <summary>
+            写入一条警告信息
+            </summary>
+            <param name="text">文本内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteWarn(System.String,System.String)">
+            <summary>
+            写入一条警告信息
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">文本内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteError(System.String)">
+            <summary>
+            写入一条错误消息
+            </summary>
+            <param name="text">文本内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteError(System.String,System.String)">
+            <summary>
+            写入一条错误消息
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">文本内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteFatal(System.String)">
+            <summary>
+            写入一条致命错误信息
+            </summary>
+            <param name="text">文本内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteFatal(System.String,System.String)">
+            <summary>
+            写入一条致命错误信息
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">文本内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteException(System.String,System.Exception)">
+            <summary>
+            写入一条异常信息
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="ex">异常信息</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteException(System.String,System.String,System.Exception)">
+            <summary>
+            写入一条异常信息
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">内容</param>
+            <param name="ex">异常</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.RecordMessage(binlu979.LogNet.HslMessageDegree,System.String,System.String)">
+            <summary>
+            记录一条自定义的消息
+            </summary>
+            <param name="degree">消息的等级</param>
+            <param name="keyWord">关键字</param>
+            <param name="text">文本</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteDescrition(System.String)">
+            <summary>
+            写入一条解释性的消息，不需要带有回车键
+            </summary>
+            <param name="description">解释性的文本</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.WriteNewLine">
+            <summary>
+            写入一条换行符
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.SetMessageDegree(binlu979.LogNet.HslMessageDegree)">
+            <summary>
+            设置日志的存储等级，高于该等级的才会被存储
+            </summary>
+            <param name="degree">消息等级</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.FiltrateKeyword(System.String)">
+            <summary>
+            过滤指定的关键字存储
+            </summary>
+            <param name="keyWord">关键字</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.GetFileSaveName">
+            <summary>
+            获取要存储的文件的名称
+            </summary>
+            <returns>完整的文件路径信息，带文件名</returns>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.CheckPathEndWithSprit(System.String)">
+            <summary>
+            返回检查的路径名称，将会包含反斜杠
+            </summary>
+            <param name="filePath">路径信息</param>
+            <returns>检查后的结果对象</returns>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.Dispose(System.Boolean)">
+            <summary>
+            释放资源
+            </summary>
+            <param name="disposing">是否初次调用</param>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetBase.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:binlu979.LogNet.HslEventArgs">
+            <summary>
+            带有日志消息的事件
+            </summary>
+        </member>
+        <member name="P:binlu979.LogNet.HslEventArgs.HslMessage">
+            <summary>
+            消息信息
+            </summary>
+        </member>
+        <member name="T:binlu979.LogNet.GenerateMode">
+            <summary>
+            日志文件输出模式
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.GenerateMode.ByEveryHour">
+            <summary>
+            按每个小时生成日志文件
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.GenerateMode.ByEveryDay">
+            <summary>
+            按每天生成日志文件
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.GenerateMode.ByEveryWeek">
+            <summary>
+            按每个周生成日志文件
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.GenerateMode.ByEveryMonth">
+            <summary>
+            按每个月生成日志文件
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.GenerateMode.ByEverySeason">
+            <summary>
+            按每季度生成日志文件
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.GenerateMode.ByEveryYear">
+            <summary>
+            按每年生成日志文件
+            </summary>
+        </member>
+        <member name="T:binlu979.LogNet.HslMessageDegree">
+            <summary>
+            记录消息的等级
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.HslMessageDegree.None">
+            <summary>
+            一条消息都不记录
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.HslMessageDegree.FATAL">
+            <summary>
+            记录致命等级及以上日志的消息
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.HslMessageDegree.ERROR">
+            <summary>
+            记录异常等级及以上日志的消息
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.HslMessageDegree.WARN">
+            <summary>
+            记录警告等级及以上日志的消息
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.HslMessageDegree.INFO">
+            <summary>
+            记录信息等级及以上日志的消息
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.HslMessageDegree.DEBUG">
+            <summary>
+            记录调试等级及以上日志的信息
+            </summary>
+        </member>
+        <member name="T:binlu979.LogNet.HslMessageItem">
+            <summary>
+            单个日志的记录信息
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.HslMessageItem.#ctor">
+            <summary>
+            默认的无参构造器
+            </summary>
+        </member>
+        <member name="P:binlu979.LogNet.HslMessageItem.Id">
+            <summary>
+            单个记录信息的标识ID，程序重新运行时清空
+            </summary>
+        </member>
+        <member name="P:binlu979.LogNet.HslMessageItem.Degree">
+            <summary>
+            消息的等级
+            </summary>
+        </member>
+        <member name="P:binlu979.LogNet.HslMessageItem.ThreadId">
+            <summary>
+            线程ID
+            </summary>
+        </member>
+        <member name="P:binlu979.LogNet.HslMessageItem.Text">
+            <summary>
+            消息文本
+            </summary>
+        </member>
+        <member name="P:binlu979.LogNet.HslMessageItem.Time">
+            <summary>
+            消息发生的事件
+            </summary>
+        </member>
+        <member name="P:binlu979.LogNet.HslMessageItem.KeyWord">
+            <summary>
+            消息的关键字
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.HslMessageItem.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>字符串信息</returns>
+        </member>
+        <member name="M:binlu979.LogNet.HslMessageItem.ToStringWithoutKeyword">
+            <summary>
+            返回表示当前对象的字符串，剔除了关键字
+            </summary>
+            <returns>字符串信息</returns>
+        </member>
+        <member name="T:binlu979.LogNet.Log">
+            <summary>
+            默认方式的LOG记录如原生请 private ILogNet logNet = new LogNetSingle(Application.StartupPath + "\\Logs\\123.txt");
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteMessage(binlu979.LogNet.HslMessageDegree,System.String,System.String)">
+            <summary>
+            自定义的消息记录
+            </summary>
+            <param name="degree">消息等级</param>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteDebug(System.String)">
+            <summary>
+            写入一条调试日志
+            </summary>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteDebug(System.String,System.String)">
+            <summary>
+            写入一条调试日志
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteDescrition(System.String)">
+            <summary>
+            写入一条解释性的信息
+            </summary>
+            <param name="description"></param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteError(System.String)">
+            <summary>
+            写入一条错误日志
+            </summary>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteError(System.String,System.String)">
+            <summary>
+            写入一条错误日志
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteException(System.String,System.Exception)">
+            <summary>
+            写入一条异常信息
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="ex">异常</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteException(System.String,System.String,System.Exception)">
+            <summary>
+            写入一条异常信息
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">内容</param>
+            <param name="ex">异常</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteFatal(System.String)">
+            <summary>
+            写入一条致命日志
+            </summary>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteFatal(System.String,System.String)">
+            <summary>
+            写入一条致命日志
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteInfo(System.String)">
+            <summary>
+            写入一条信息日志
+            </summary>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteInfo(System.String,System.String)">
+            <summary>
+            写入一条信息日志
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteNewLine">
+            <summary>
+            写入一行换行符
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteWarn(System.String)">
+            <summary>
+            写入一条警告日志
+            </summary>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="M:binlu979.LogNet.Log.WriteWarn(System.String,System.String)">
+            <summary>
+            写入一条警告日志
+            </summary>
+            <param name="keyWord">关键字</param>
+            <param name="text">日志内容</param>
+        </member>
+        <member name="T:binlu979.LogNet.LogNetManagment">
+            <summary>
+            日志类的管理器
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.LogNetManagment.LogSaveModeBySingleFile">
+            <summary>
+            存储文件的时候指示单文件存储
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.LogNetManagment.LogSaveModeByFileSize">
+            <summary>
+            存储文件的时候指示根据文件大小存储
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.LogNetManagment.LogSaveModeByDateTime">
+            <summary>
+            存储文件的时候指示根据日志时间来存储
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.LogNetManagment.LogFileHeadString">
+            <summary>
+            日志文件的头标志
+            </summary>
+        </member>
+        <member name="P:binlu979.LogNet.LogNetManagment.LogNet">
+            <summary>
+            公开的一个静态变量，允许随意的设置
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetManagment.GetSaveStringFromException(System.String,System.Exception)">
+            <summary>
+            通过异常文本格式化成字符串用于保存或发送
+            </summary>
+            <param name="text">文本消息</param>
+            <param name="ex">异常</param>
+            <returns>异常最终信息</returns>
+        </member>
+        <member name="T:binlu979.LogNet.LogNetDateTime">
+            <summary>
+            一个日志组件，可以根据时间来区分不同的文件存储
+            </summary>
+            <remarks>
+            此日志实例将根据日期时间来进行分类，支持的时间分类如下：
+            <list type="number">
+            <item>小时</item>
+            <item>天</item>
+            <item>周</item>
+            <item>月份</item>
+            <item>季度</item>
+            <item>年份</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetDateTime.#ctor(System.String,binlu979.LogNet.GenerateMode)">
+            <summary>
+            实例化一个根据时间存储的日志组件
+            </summary>
+            <param name="filePath">文件存储的路径</param>
+            <param name="generateMode">存储文件的间隔</param>
+        </member>
+        <member name="F:binlu979.LogNet.LogNetDateTime.m_fileName">
+            <summary>
+            当前正在存储的文件名称
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.LogNetDateTime.m_filePath">
+            <summary>
+            文件的路径
+            </summary>
+        </member>
+        <member name="F:binlu979.LogNet.LogNetDateTime.m_generateMode">
+            <summary>
+            文件的存储模式，默认按照年份来存储
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetDateTime.GetFileSaveName">
+            <summary>
+            获取需要保存的日志文件
+            </summary>
+            <returns>完整的文件路径，含文件名</returns>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetDateTime.GetExistLogFileNames">
+            <summary>
+            获取所有的文件夹中的日志文件
+            </summary>
+            <returns>所有的文件路径集合</returns>
+        </member>
+        <member name="T:binlu979.LogNet.LogNetFileSize">
+            <summary>
+            根据文件的大小来存储日志信息
+            </summary>
+            <remarks>
+            此日志的实例是根据文件的大小储存，例如设置了2M，每隔2M，系统将生成一个新的日志文件。
+            </remarks>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetFileSize.#ctor(System.String,System.Int32)">
+            <summary>
+            实例化一个根据文件大小生成新文件的
+            </summary>
+            <param name="filePath">日志文件的保存路径</param>
+            <param name="fileMaxSize">每个日志文件的最大大小，默认2M</param>
+        </member>
+        <member name="F:binlu979.LogNet.LogNetFileSize.m_fileName">
+            <summary>
+            当前正在存储的文件名称
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetFileSize.GetFileSaveName">
+            <summary>
+            获取需要保存的日志文件
+            </summary>
+            <returns>字符串数据</returns>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetFileSize.GetLastAccessFileName">
+            <summary>
+            获取之前保存的日志文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetFileSize.GetDefaultFileName">
+            <summary>
+            获取一个新的默认的文件名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetFileSize.GetExistLogFileNames">
+            <summary>
+            返回所有的日志文件
+            </summary>
+            <returns>所有的日志文件信息</returns>
+        </member>
+        <member name="T:binlu979.LogNet.LogNetSingle">
+            <summary>
+            单日志文件对象
+            </summary>
+            <remarks>
+            此日志实例化需要指定一个完整的文件路径，当需要记录日志的时候调用方法，会使得日志越来越大，对于写入的性能没有太大影响，但是会影响文件读取。
+            </remarks>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetSingle.#ctor(System.String)">
+            <summary>
+            实例化一个单文件日志的对象
+            </summary>
+            <param name="filePath">文件的路径</param>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetSingle.ClearLog">
+            <summary>
+            单日志文件允许清空日志内容
+            </summary>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetSingle.GetAllSavedLog">
+            <summary>
+            获取单日志文件的所有保存记录
+            </summary>
+            <returns>字符串信息</returns>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetSingle.GetExistLogFileNames">
+            <summary>
+            获取所有的日志文件数组，对于单日志文件来说就只有一个
+            </summary>
+            <returns>字符串数组，包含了所有的存在的日志数据</returns>
+        </member>
+        <member name="M:binlu979.LogNet.LogNetSingle.GetFileSaveName">
+            <summary>
+            获取存储的文件的名称
+            </summary>
+            <returns>字符串数据</returns>
+        </member>
+        <member name="T:binlu979.Core.CoordinationStatus">
+            <summary>
+            线程的协调逻辑状态
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.CoordinationStatus.AllDone">
+            <summary>
+            所有项完成
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.CoordinationStatus.Timeout">
+            <summary>
+            超时
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.CoordinationStatus.Cancel">
+            <summary>
+            任务取消
+            </summary>
+        </member>
+        <member name="T:binlu979.Core.AsyncCoordinator">
+            <summary>
+            一个线程协调逻辑类，详细参考书籍《CLR Via C#》page:681
+            这个类可惜没有报告进度的功能
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.AsyncCoordinator.AboutToBegin(System.Int32)">
+            <summary>
+            每次的操作任务开始前必须调用该方法
+            </summary>
+            <param name="opsToAdd"></param>
+        </member>
+        <member name="M:binlu979.Core.AsyncCoordinator.JustEnded">
+            <summary>
+            在一次任务处理好操作之后，必须调用该方法
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.AsyncCoordinator.AllBegun(System.Action{binlu979.Core.CoordinationStatus},System.Int32)">
+            <summary>
+            该方法必须在发起所有的操作之后调用
+            </summary>
+            <param name="callback">回调方法</param>
+            <param name="timeout">超时时间</param>
+        </member>
+        <member name="M:binlu979.Core.AsyncCoordinator.TimeExpired(System.Object)">
+            <summary>
+            超时的方法
+            </summary>
+            <param name="o"></param>
+        </member>
+        <member name="M:binlu979.Core.AsyncCoordinator.Cancel">
+            <summary>
+            取消任务的执行
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.AsyncCoordinator.ReportStatus(binlu979.Core.CoordinationStatus)">
+            <summary>
+            生成一次报告
+            </summary>
+            <param name="status">报告的状态</param>
+        </member>
+        <member name="M:binlu979.Core.AsyncCoordinator.Maxinum(System.Int32@,System.Func{System.Int32,System.Int32})">
+            <summary>
+            乐观的并发方法模型，具体参照《CLR Via C#》page:686
+            </summary>
+            <param name="target">唯一的目标数据</param>
+            <param name="change">修改数据的算法</param>
+            <returns></returns>
+        </member>
+        <member name="T:binlu979.Core.HslAsyncCoordinator">
+            <summary>
+            一个用于高性能，乐观并发模型控制操作的类，允许一个方法(隔离方法)的安全单次执行
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.HslAsyncCoordinator.#ctor(System.Action)">
+            <summary>
+            实例化一个对象，需要传入隔离执行的方法
+            </summary>
+            <param name="operater">隔离执行的方法</param>
+        </member>
+        <member name="F:binlu979.Core.HslAsyncCoordinator.OperaterStatus">
+            <summary>
+            操作状态，0是未操作，1是操作中
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.HslAsyncCoordinator.Target">
+            <summary>
+            需要操作的次数
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.HslAsyncCoordinator.StartOperaterInfomation">
+            <summary>
+            启动线程池执行隔离方法
+            </summary>
+        </member>
+        <member name="T:binlu979.Core.HslReadWriteLock">
+            <summary>
+            一个高性能的读写锁，支持写锁定，读灵活，读时写锁定，写时读锁定
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.HslReadWriteLock.ToString">
+            <summary>
+            返回本对象的描述字符串
+            </summary>
+            <returns>对象的描述字符串</returns>
+        </member>
+        <member name="M:binlu979.Core.HslReadWriteLock.#ctor">
+            <summary>
+            实例化一个读写锁的对象
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.HslReadWriteLock.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.HslReadWriteLock.Enter(System.Boolean)">
+            <summary>
+            根据读写情况请求锁
+            </summary>
+            <param name="exclusive">True为写请求，False为读请求</param>
+        </member>
+        <member name="M:binlu979.Core.HslReadWriteLock.Leave">
+            <summary>
+            释放锁，将根据锁状态自动区分读写锁
+            </summary>
+        </member>
+        <member name="T:binlu979.Core.SimpleHybirdLock">
+            <summary>
+            一个简单的混合线程同步锁，采用了基元用户加基元内核同步构造实现
+            </summary>
+            <example>
+            以下演示常用的锁的使用方式，还包含了如何优雅的处理异常锁
+            <code lang="cs" source="HslCommunication_Net45.Test\Documentation\Samples\Core\ThreadLock.cs" region="SimpleHybirdLockExample1" title="SimpleHybirdLock示例" />
+            </example>
+        </member>
+        <member name="M:binlu979.Core.SimpleHybirdLock.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SimpleHybirdLock.m_waiters">
+            <summary>
+            基元用户模式构造同步锁
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SimpleHybirdLock.m_waiterLock">
+            <summary>
+            基元内核模式构造同步锁
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.SimpleHybirdLock.Enter">
+            <summary>
+            获取锁
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.SimpleHybirdLock.Leave">
+            <summary>
+            离开锁
+            </summary>
+        </member>
+        <member name="P:binlu979.Core.SimpleHybirdLock.IsWaitting">
+            <summary>
+            获取当前锁是否在等待当中
+            </summary>
+        </member>
+        <member name="T:binlu979.Core.SoftMultiTask`1">
+            <summary>
+            一个用于多线程并发处理数据的模型类，适用于处理数据量非常庞大的情况
+            </summary>
+            <typeparam name="T">等待处理的数据类型</typeparam>
+        </member>
+        <member name="M:binlu979.Core.SoftMultiTask`1.#ctor(`0[],System.Func{`0,System.Boolean},System.Int32)">
+            <summary>
+            实例化一个数据处理对象
+            </summary>
+            <param name="dataList">数据处理列表</param>
+            <param name="operater">数据操作方法，应该是相对耗时的任务</param>
+            <param name="threadCount">需要使用的线程数</param>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_opCount">
+            <summary>
+            操作总数，判定操作是否完成
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_opThreadCount">
+            <summary>
+            判断是否所有的线程是否处理完成
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_threadCount">
+            <summary>
+            准备启动的处理数据的线程数量
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_runStatus">
+            <summary>
+            指示多线程处理是否在运行中，防止冗余调用
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_dataList">
+            <summary>
+            列表数据
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_operater">
+            <summary>
+            需要操作的方法
+            </summary>
+        </member>
+        <member name="T:binlu979.Core.SoftMultiTask`1.MultiInfo">
+            <summary>
+            一个双参数委托
+            </summary>
+            <param name="item"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="T:binlu979.Core.SoftMultiTask`1.MultiInfoTwo">
+            <summary>
+            用于报告进度的委托，当finish等于count时，任务完成
+            </summary>
+            <param name="finish">已完成操作数量</param>
+            <param name="count">总数量</param>
+            <param name="success">成功数量</param>
+            <param name="failed">失败数量</param>
+        </member>
+        <member name="E:binlu979.Core.SoftMultiTask`1.OnExceptionOccur">
+            <summary>
+            异常发生时事件
+            </summary>
+        </member>
+        <member name="E:binlu979.Core.SoftMultiTask`1.OnReportProgress">
+            <summary>
+            报告处理进度时发生
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_finishCount">
+            <summary>
+            已处理完成数量，无论是否异常
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_successCount">
+            <summary>
+            处理完成并实现操作数量
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_failedCount">
+            <summary>
+            处理过程中异常数量
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.HybirdLock">
+            <summary>
+            用于触发事件的混合线程锁
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_isRunningStop">
+            <summary>
+            指示处理状态是否为暂停状态
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_isQuit">
+            <summary>
+            指示系统是否需要强制退出
+            </summary>
+        </member>
+        <member name="F:binlu979.Core.SoftMultiTask`1.m_isQuitAfterException">
+            <summary>
+            在发生错误的时候是否强制退出后续的操作
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.SoftMultiTask`1.StartOperater">
+            <summary>
+            启动多线程进行数据处理
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.SoftMultiTask`1.StopOperater">
+            <summary>
+            暂停当前的操作
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.SoftMultiTask`1.ResumeOperater">
+            <summary>
+            恢复暂停的操作
+            </summary>
+        </member>
+        <member name="M:binlu979.Core.SoftMultiTask`1.EndedOperater">
+            <summary>
+            直接手动强制结束操作
+            </summary>
+        </member>
+        <member name="P:binlu979.Core.SoftMultiTask`1.IsQuitAfterException">
+            <summary>
+            在发生错误的时候是否强制退出后续的操作
+            </summary>
+        </member>
+        <member name="M:binlu979.软件注册.#ctor">
+            <summary>
+            实例化一个软件授权类
+            </summary>
+        </member>
+        <member name="F:binlu979.软件注册.TextCode">
+            <summary>
+            注册码描述文本
+            </summary>
+        </member>
+        <member name="P:binlu979.软件注册.FinalCode">
+            <summary>
+            最终的注册秘钥信息，注意是只读的。
+            </summary>
+            <remarks>
+            时间：2018年9月1日 23:01:54，来自 洛阳-LYG 的建议，公开了本属性信息，只读。
+            </remarks>
+        </member>
+        <member name="P:binlu979.软件注册.IsReleaseVersion">
+            <summary>
+            是否正式发行版，是的话就取消授权
+            </summary>
+        </member>
+        <member name="P:binlu979.软件注册.HasLoadByFile">
+            <summary>
+            指示是否加载过文件信息
+            </summary>
+        </member>
+        <member name="P:binlu979.软件注册.IsSoftTrial">
+            <summary>
+            指示系统是否处于试用运行
+            </summary>
+        </member>
+        <member name="M:binlu979.软件注册.GetMachineCodeString">
+            <summary>
+            获取本机的机器码
+            </summary>
+            <returns>机器码字符串</returns>
+        </member>
+        <member name="M:binlu979.软件注册.CheckAuthorize(System.String,System.Func{System.String,System.String})">
+            <summary>
+            检查该注册码是否是正确的注册码
+            </summary>
+            <param name="code">注册码信息</param>
+            <param name="encrypt">数据加密的方法，必须用户指定</param>
+            <returns>是否注册成功</returns>
+        </member>
+        <member name="M:binlu979.软件注册.IsAuthorizeSuccess(System.Func{System.String,System.String})">
+            <summary>
+            检测授权是否成功
+            </summary>
+            <param name="encrypt">数据加密的方法，必须用户指定</param>
+            <returns>是否成功授权</returns>
+        </member>
+        <member name="M:binlu979.软件注册.GetInfo">
+            <summary>
+            获取本计算机唯一的机器码
+            </summary>
+            <returns>字符串形式的机器码</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{812509C2-0F0D-49C4-B811-3A51C228F78B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>binlu979</RootNamespace>
+    <AssemblyName>binlu979</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\binlu979.xml</DocumentationFile>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Down\DownLoadFile.cs" />
+    <Compile Include="Down\DownloadProgressListener.cs" />
+    <Compile Include="Down\DownloadThread.cs" />
+    <Compile Include="Down\FileDownloader.cs" />
+    <Compile Include="Down\IDownloadProgressListener.cs" />
+    <Compile Include="DataTOdata.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HttpHelper.cs" />
+    <Compile Include="inio.cs" />
+    <Compile Include="HttpLib\Builder\RequestBuilder.Action.cs" />
+    <Compile Include="HttpLib\Builder\RequestBuilder.Auth.cs" />
+    <Compile Include="HttpLib\Builder\RequestBuilder.Body.cs" />
+    <Compile Include="HttpLib\Builder\RequestBuilder.cs" />
+    <Compile Include="HttpLib\Builder\RequestBuilder.Header.cs" />
+    <Compile Include="HttpLib\Cookies.cs" />
+    <Compile Include="HttpLib\Header.cs" />
+    <Compile Include="HttpLib\Http.cs" />
+    <Compile Include="HttpLib\HttpVerb.cs" />
+    <Compile Include="HttpLib\NamedFileStream.cs" />
+    <Compile Include="HttpLib\Provider\ActionProvider.cs" />
+    <Compile Include="HttpLib\Provider\AuthenticationProvider.cs" />
+    <Compile Include="HttpLib\Provider\BasicAuthenticationProvider.cs" />
+    <Compile Include="HttpLib\Provider\BodyProvider.cs" />
+    <Compile Include="HttpLib\Provider\DefaultBodyProvider.cs" />
+    <Compile Include="HttpLib\Provider\DictionaryHeaderProvider.cs" />
+    <Compile Include="HttpLib\Provider\FormBodyProvider.cs" />
+    <Compile Include="HttpLib\Provider\HeaderProvider.cs" />
+    <Compile Include="HttpLib\Provider\MultiHeaderProvider.cs" />
+    <Compile Include="HttpLib\Provider\MultipartBodyProvider.cs" />
+    <Compile Include="HttpLib\Provider\NonActionProvider.cs" />
+    <Compile Include="HttpLib\Provider\SettableActionProvider.cs" />
+    <Compile Include="HttpLib\Provider\StreamBodyProvider.cs" />
+    <Compile Include="HttpLib\Provider\TextAuthenticationProvider.cs" />
+    <Compile Include="HttpLib\Provider\TextBodyProvider.cs" />
+    <Compile Include="HttpLib\Request.cs" />
+    <Compile Include="HttpLib\RequestTemplate.cs" />
+    <Compile Include="HttpLib\Streams\ProgressCallbackHelper.cs" />
+    <Compile Include="HttpLib\Streams\ProgressChangedEventArgs.cs" />
+    <Compile Include="HttpLib\Streams\ProgressMonitorStream.cs" />
+    <Compile Include="LogNet\Core\ILogNet.cs" />
+    <Compile Include="LogNet\Core\LogBase.cs" />
+    <Compile Include="LogNet\Core\Types.cs" />
+    <Compile Include="LogNet\Log.cs" />
+    <Compile Include="LogNet\LogNetManagment.cs" />
+    <Compile Include="LogNet\Logs\LogNetDateTime.cs" />
+    <Compile Include="LogNet\Logs\LogNetFileSize.cs" />
+    <Compile Include="LogNet\Logs\LogNetSingle.cs" />
+    <Compile Include="LogNet\Thread\ThreadLock.cs" />
+    <Compile Include="Tools.cs" />
+    <Compile Include="序列化.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="软件注册.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HttpLib\JumpKick.HttpLib.csproj" />
+    <Content Include="HttpLib\新建文本文档.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LogNet\View\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

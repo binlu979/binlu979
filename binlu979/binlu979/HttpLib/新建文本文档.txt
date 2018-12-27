@@ -1,0 +1,103 @@
+HttpLib是.Net的免费（Apache 2.0许可证）Web请求帮助程序，使开发人员可以更轻松地从Internet访问和下载资源。
+
+开发构建 建立状态主人
+
+版本2.0.16
+
+关于
+该图书馆于2012年首次发布，此后已下载超过50000个。
+
+下载
+可从此GitHub的仓库的发布页面获取版本。不再维护Codeplex上存储库。
+
+源代码
+源代码可在GitHub上上获得
+
+最新发布的：
+最新版本是2.0.16，它支持以下功能：
+
+支持大多数HTTP动词：GET / POST / PUT / DELETE等等
+上传文件并下载到磁盘
+文件上载/下载的进度监视器
+完全异步操作
+可添加自定义身份验证提供程序（当前支持基本身份验证）
+内容流可以自定义
+饼干是静态的，并且在请求之间保持不变
+错误修复16 - 设置自定义标头
+错误修复17 - 没有正文发送请求
+请求18 - 删除了统计信息收集
+错误修复20 - 多部分表单边界
+支持的平台：.Net4.0 +（WinForms，WCF，ASP.Net，Silverlight 5，Windows Phone 8.0 +，Windows 8.0+）。
+
+即将发布的版本：
+2.1： OAuth2身份验证提供程序
+
+例子
+获取网页
+对给定的URL执行HTTP GET并执行提供给OnSuccess方法的lambda函数。此示例将网页的内容打印到命令行。
+
+Http.Get("https://jthorne.co.uk/httplib").OnSuccess(result =>
+{
+	Console.Write(result);
+}).Go();
+可以通过使用OnFail方法捕获错误，如下所示：
+
+Http.Get("https://jthorne.co.uk/httplib").OnSuccess(result =>
+{
+    Console.Write(result);
+}).OnFail(webexception =>
+{
+Console.Write(webexception.Message);
+}).Go();
+POST网页
+可以使用.FORM方法将网页表单数据发布到Web服务，如下所示。根据用户请求，此方法还支持发布词典。
+
+Http.Post("https://jthorne.co.uk/httplib").Form(new { name = "James", username = "j6mes" }).Go();
+或者，可以使用。体方法发布原始消息（例如SOAP或JSON）。
+
+将文件上载到Web服务
+通过在.Upload方法中指定NamedFileStream列表，可以将本地计算机中的多个文件上载到远程服务器。
+
+Http.Post("https://jthorne.co.uk/httplib")
+.Upload(files:
+	new[] { 
+		new NamedFileStream("myfile", "photo.jpg", "application/octet-stream", File.OpenRead(@"C:\photo.jpg"))
+			}).Go();
+当然，为了适应httplib的的真正灵活性，还可以添加进度监视器和的onSuccess方法：
+
+Http.Post("https://jthorne.co.uk/httplib")
+	.Upload(
+		files:
+			new[] { 
+				new NamedFileStream("myfile", "photo.jpg", "application/octet-stream", File.OpenRead(@"C:\photo.jpg"))
+				}, 
+				onProgressChanged:
+				(bytesSent, totalBytes) => 
+				{
+					Console.WriteLine("Uploading: " + (bytesSent / totalBytes)*100 + "% completed");
+				})
+				.OnSuccess(result=>
+				{
+					Console.WriteLine(result);
+				}).Go();
+从网络服务下载文件
+可以使用DownloadTo扩展名将文件直接下载到磁盘。可以在此处添加的onSuccess方法作为参数。
+
+如果服务器没有回复内容长度标头，则totalBytes值将为空，这意味着您将无法提供已下载文件的百分比。
+
+Http.Get("https://jthorne.co.uk/httplib").DownloadTo(@"C:\httplib.html", onProgressChanged: (bytesCopied,totalBytes) =>; 
+{
+	if (totalBytes.HasValue)
+	{
+		("Downloaded: " + (bytesCopied/totalBytes)*100 + "%");
+	}
+	Console.Write("Downloaded: " + bytesCopied.ToString() + " bytes");
+	},
+		onSuccess: (headers) =>
+	{
+		UpdateText("Download Complete");
+	}).Go();
+删除网页
+对给定的URL执行HTTP DELETE
+
+Http.Delete("https://jthorne.co.uk/httplib").Go();
